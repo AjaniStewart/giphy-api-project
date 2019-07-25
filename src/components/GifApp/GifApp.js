@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import GifCard from '../GifCard/GifCard'
+import SearchField from '../SearchField/SearchField'
+
+const api_key = '?api_key=LgtNkTTMlSnTMNsRZvRxkY4og7ExPyhM';
 
 class GifApp extends Component {
   constructor(props) {
@@ -9,12 +12,16 @@ class GifApp extends Component {
       data: null
     }
     this.fetchGifData = this.fetchGifData.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     this.fetchGifData("trending");
   }
 
+  handleSubmit(i) {
+    this.fetchGifData("search", i);
+  }
 
   async fetchGifData(term, searchTerm) {
     if (term === undefined) {
@@ -23,7 +30,7 @@ class GifApp extends Component {
     }
 
     try {
-      let url = 'http://api.giphy.com/v1/gifs/' + term + '?api_key=LgtNkTTMlSnTMNsRZvRxkY4og7ExPyhM';
+      let url = 'http://api.giphy.com/v1/gifs/' + term + api_key;
       if (term === "search") {
         url += '&q=' + searchTerm;
       }
@@ -41,10 +48,14 @@ class GifApp extends Component {
     if (data !== null) {
       console.log("GifCard:",data)
     return (
-      <GifCard data={data}/>
+      <div>
+        <SearchField handleSubmit={this.handleSubmit}/>
+        <GifCard data={data}/>
+      </div>
+      
     );
     } else {
-      return null;
+      return <SearchField handleSubmit={this.handleSubmit}/>
     }
   }
 }

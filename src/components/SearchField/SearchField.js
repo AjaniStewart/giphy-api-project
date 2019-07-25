@@ -1,16 +1,11 @@
 import React, {Component} from 'react';
-import GifCard from "../GifCard/GifCard";
-import axios from 'axios';
 import "./SearchField.css"
-
-const api_key = 'LgtNkTTMlSnTMNsRZvRxkY4og7ExPyhM';
 
 class SearchField extends Component {
     constructor(props) {
         super(props);
         this.state = {
             term: "",
-            
             fetched: true
             
         }
@@ -25,7 +20,7 @@ handleChange = event => {
 handleSubmit = event => {
     event.preventDefault();
     console.log(this.state.term);
-    this.searchGif();
+    this.props.handleSubmit(this.state.term);
 }
 
     render () {
