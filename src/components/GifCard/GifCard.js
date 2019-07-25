@@ -11,7 +11,7 @@ const GifCard = props => {
         {props.data.data.map(gif => {
           return (
           <li key={gif.id}>
-            <img src={gif.images.original.url} alt={gif.title}></img>
+            <img src={gif.images.fixed_height.url} alt={gif.title}></img>
           </li>
           );
         }) }
@@ -21,7 +21,7 @@ const GifCard = props => {
   }
   return (
     <div className="gifs">
-      <img src={props.data.data.images.downsized_medium.url} alt={props.data.title}></img>
+      <img src={props.data.data.images.fixed_height.url} alt={props.data.title}></img>
     </div>
   );
 }

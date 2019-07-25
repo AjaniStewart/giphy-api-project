@@ -10,6 +10,7 @@ class App extends Component {
     return (
         <div className="App">
           <header className="App-header">
+            <div><h2>Giphy</h2></div>
           </header>
           <GifApp/>
         </div>

@@ -13,14 +13,20 @@ class GifApp extends Component {
     }
     this.fetchGifData = this.fetchGifData.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRandom = this.handleRandom.bind(this);
   }
 
   componentDidMount() {
     this.fetchGifData("trending");
   }
 
-  handleSubmit(i) {
-    this.fetchGifData("search", i);
+  handleSubmit = event => {
+    this.fetchGifData("search", event);
+  }
+  
+
+  handleRandom = () =>{
+    this.fetchGifData("random");
   }
 
   async fetchGifData(term, searchTerm) {
@@ -50,6 +56,7 @@ class GifApp extends Component {
     return (
       <div>
         <SearchField handleSubmit={this.handleSubmit}/>
+        <button className = "button" onClick={this.handleRandom}>Random</button>
         <GifCard data={data}/>
       </div>
       
